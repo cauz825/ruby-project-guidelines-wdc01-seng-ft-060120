@@ -1,4 +1,4 @@
-class UserEvents < ActiveRecord::Base
+class UserEvent < ActiveRecord::Base
     belongs_to :user
     belongs_to :event
     has_many :venues, through: :events
