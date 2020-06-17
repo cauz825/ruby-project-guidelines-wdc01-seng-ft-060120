@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
                 show.city = input_city
                 show.save
             end
+            Event.create(artist: act,venue: show)
         end
 
 

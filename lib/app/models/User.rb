@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
     def self.find_username(input)
         User.all.find_or_create_by(username:input.downcase)
         # binding.pry
-        print "Welcome, #{input.capitalize}! "
+       
     end
 end
