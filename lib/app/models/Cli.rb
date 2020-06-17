@@ -6,7 +6,7 @@ class Cli
         puts "Welcome to Zara and Mike's Awesome Concert Journal App!"
         puts "Enter Username"
         input = gets.chomp()
-       self.user = User.find_user_by_username(input.downcase)
+        self.user = User.find_user_by_username(input.downcase)
         self.option
     end
 
@@ -22,7 +22,6 @@ class Cli
             self.all_user_events
         elsif second_input == 3
             self.best_concert
-            # binding.pry
         else
             puts "************************************"
             puts "Input not found, please select again"
@@ -44,24 +43,25 @@ class Cli
 
      def all_user_events
         self.user.events.each do |event|
-            # binding.pry
+            user_event = self.user.user_events.find {|ue| ue.event_id == event.id}
             puts "Artist: #{event.artist.name.titleize}"
             puts "Venue: #{event.venue.name.titleize}"
             puts "Date: #{event.event_date}"
-            puts "Rating: (COME BACK TO THIS)"
-            binding.pry
-            puts "**************"
+            puts "Rating: #{user_event.rating} out of 10"
+            # binding.pry
+            puts "**********************"
         end
     end
 
     def best_concert
-        rating_array = self.user.user_events.map do |ue|
+        best = self.user.user_events.max_by do |ue| #provides all shows (including rating) from user
             ue.rating
         end
-        rating_array.max
-        binding.pry
+        puts "Your Best Concert Was #{best.event.artist.name.titleize}, at #{best.event.venue.name.titleize} on #{best.event.event_date}"
+        puts "********************************"
+        self.option
     end
-        
+   
     def run
         self.welcoming_user
     end 

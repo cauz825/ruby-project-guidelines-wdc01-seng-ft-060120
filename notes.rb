@@ -6,12 +6,10 @@
 6 - user find venue been 
 7 - user count number of seeing specific artist 
 8 - based on event find all users 
-9 - rating on event
+# 9 - rating on event
 
 
 .where
 
 New to-do list
-# 1 - Review an event 
-    # "5 out of 5 stars!"
 2 - Delete an event
