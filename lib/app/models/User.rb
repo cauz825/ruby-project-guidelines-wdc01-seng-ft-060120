@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-    has_many :artists, through: :events
-    has_many :venues, through: :events
-    has_many :user_events
+    has_many :user_events 
+    has_many :events, through: :user_events
+    
 
-    def self.find_username(input)
+    def self.find_user_by_username(input)
         User.all.find_or_create_by(username:input.downcase)
         # binding.pry
        

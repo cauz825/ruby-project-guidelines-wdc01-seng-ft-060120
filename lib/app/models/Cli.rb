@@ -1,31 +1,47 @@
-class Cli < ActiveRecord::Base
-    
-    def self.welcoming_user
+class Cli 
+    attr_accessor :user
+    def welcoming_user
         puts "Welcome to Zara and Mike's Awesome Concert Journal App!"
         puts "Enter Username"
         input = gets.chomp()
-       @user_input = User.find_username(input.downcase)
+       self.user = User.find_user_by_username(input.downcase)
+        self.option
     end
 
-    def self.option
+    def option
         puts "What can I help you with?"
         puts "1 - Create Event"
-        puts "2 - How many times have i seen ()"
-        @second_input = gets.chomp().to_i
+        puts "2 - List all my events"
+        second_input = gets.chomp().to_i
+        if second_input == 1
+            self.create_event
+        elsif second_input == 2
+            self.all_user_events
+        end
+
     end 
 
-    def self.option_choice
-        if @second_input == 1
+    def self.create_event
             create_event = Event.new_event
             puts "did you attend this event?"
             event_input = gets.chomp
             if event_input == "yes"
                 UserEvent.create(user: @user_input,event: create_event)
-            end
-            
-        elsif second_input == 2
-        end
-    end
+            end         
+     end
+
+     def all_user_events
+        self.user.events.map { |event| event.artist }
+        binding.pry
+        self.user
+        
+        
+    end 
+        
+    def run
+        self.welcoming_user
+    end 
+
 
 end 
 

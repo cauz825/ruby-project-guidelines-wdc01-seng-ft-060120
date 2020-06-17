@@ -1,9 +1,10 @@
 require_relative '../config/environment'
 require_relative '../lib/app/models/User.rb'
-
-Cli.welcoming_user
-Cli.option
-Cli.option_choice
+cli = Cli.new
+cli.run
+binding.pry
+# Cli.option
+# Cli.create_event
     #more options to be filled in
             
 
