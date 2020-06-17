@@ -1,5 +1,7 @@
 class Cli 
+    
     attr_accessor :user
+
     def welcoming_user
         puts "Welcome to Zara and Mike's Awesome Concert Journal App!"
         puts "Enter Username"
@@ -12,31 +14,53 @@ class Cli
         puts "What can I help you with?"
         puts "1 - Create Event"
         puts "2 - List all my events"
+        puts "3 - What was my best show?"
         second_input = gets.chomp().to_i
         if second_input == 1
             self.create_event
         elsif second_input == 2
             self.all_user_events
+        elsif second_input == 3
+            self.best_concert
+            # binding.pry
+        else
+            puts "************************************"
+            puts "Input not found, please select again"
+            puts "************************************"
         end
 
     end 
 
-    def self.create_event
+    def create_event
             create_event = Event.new_event
             puts "did you attend this event?"
             event_input = gets.chomp
             if event_input == "yes"
-                UserEvent.create(user: @user_input,event: create_event)
+                puts "Rate the event on a scale of 1-10"
+                rating_input = gets.chomp().to_i.clamp(1, 10)
+                UserEvent.create(user:self.user, event:create_event, rating:rating_input)
             end         
-     end
+    end
 
      def all_user_events
-        self.user.events.map { |event| event.artist }
+        self.user.events.each do |event|
+            # binding.pry
+            puts "Artist: #{event.artist.name.titleize}"
+            puts "Venue: #{event.venue.name.titleize}"
+            puts "Date: #{event.event_date}"
+            puts "Rating: (COME BACK TO THIS)"
+            binding.pry
+            puts "**************"
+        end
+    end
+
+    def best_concert
+        rating_array = self.user.user_events.map do |ue|
+            ue.rating
+        end
+        rating_array.max
         binding.pry
-        self.user
-        
-        
-    end 
+    end
         
     def run
         self.welcoming_user
@@ -44,20 +68,3 @@ class Cli
 
 
 end 
-
-
-   
-    #         def option_choice(second_input)
-    #             if second_input == 1
-    #                 user_event = Event.new_event
-    #                 puts "did you attend this event?"
-    #                 event_input = gets.chomp
-    #                 if event_input == "yes"
-    #                     binding.pry
-    #                     UserEvent.new_user_event(@self_user,user_event)
-    #                 end
-                    
-    #             elsif second_input == 2
-    #             end
-    #         end
-    #     option_choice(second_input)

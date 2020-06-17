@@ -5,5 +5,4 @@ class UserEvent < ActiveRecord::Base
     # has_many :artists, through: :events
 
 
-
 end

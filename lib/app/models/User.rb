@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
     def self.find_user_by_username(input)
         User.all.find_or_create_by(username:input.downcase)
-        # binding.pry
-       
     end
+
+    
 end

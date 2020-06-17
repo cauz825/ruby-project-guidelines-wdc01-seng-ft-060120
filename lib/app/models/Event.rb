@@ -22,7 +22,9 @@ class Event < ActiveRecord::Base
                 show.city = input_city
                 show.save
             end
-            Event.create(artist: act,venue: show)
+        puts "When was this show? (ex. June 18, 2020)"
+        date = gets.chomp()
+            Event.create(artist: act,venue: show, event_date: date)
         end
 
 
