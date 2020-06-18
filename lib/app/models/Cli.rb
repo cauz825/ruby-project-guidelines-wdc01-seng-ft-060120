@@ -33,7 +33,7 @@ class Cli
 
     def create_event
             create_event = Event.new_event
-            puts "did you attend this event?"
+            puts "Did you attend this event?"
             event_input = gets.chomp
             if event_input == "yes"
                 puts "Rate the event on a scale of 1-10"
