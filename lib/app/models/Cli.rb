@@ -51,7 +51,6 @@ class Cli
             puts "Venue: #{event.venue.name.titleize}"
             puts "Date: #{event.event_date}"
             puts "Rating: #{user_event.rating} out of 10"
-            
             puts "**********************"
         end
         self.option
