@@ -3,4 +3,3 @@ require_relative '../lib/app/models/User.rb'
 
 cli = Cli.new
 cli.run
-cli.option

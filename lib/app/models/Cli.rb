@@ -67,6 +67,7 @@ class Cli
    
     def run
         self.welcoming_user
+        self.option
     end 
 
 
