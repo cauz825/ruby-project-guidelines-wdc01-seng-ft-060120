@@ -15,6 +15,7 @@ class Cli
         puts "1 - Create Event"
         puts "2 - List all my events"
         puts "3 - What was my best show?"
+        puts "Enter any other key to exit"
         second_input = gets.chomp().to_i
         if second_input == 1
             self.create_event
@@ -38,7 +39,8 @@ class Cli
                 puts "Rate the event on a scale of 1-10"
                 rating_input = gets.chomp().to_i.clamp(1, 10)
                 UserEvent.create(user:self.user, event:create_event, rating:rating_input)
-            end         
+            end    
+            self.option     
     end
 
      def all_user_events
@@ -48,9 +50,10 @@ class Cli
             puts "Venue: #{event.venue.name.titleize}"
             puts "Date: #{event.event_date}"
             puts "Rating: #{user_event.rating} out of 10"
-            # binding.pry
+            
             puts "**********************"
         end
+        self.option
     end
 
     def best_concert
